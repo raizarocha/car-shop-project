@@ -16,6 +16,22 @@ class MotoService {
 
     return this.createMotoDomain(registerNewCar);
   }
+
+  public async getAllMoto() {
+    const motoODM = new MotoODM();
+    const allMoto = await motoODM.find();
+    const motoArray = allMoto.map((moto) => this.createMotoDomain(moto));
+
+    return motoArray;
+  }
+
+  public async getMotoById(id: string) {
+    const motoODM = new MotoODM();
+    const findId = await motoODM.findById(id);
+    const motoId = this.createMotoDomain(findId);
+
+    return motoId;
+  }
 }
 
 export default MotoService;
